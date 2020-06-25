@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,16 +7,16 @@ import {
   Button,
   Alert,
   ActivityIndicator,
-} from 'react-native';
-import firebase from '../config/Firebase';
+} from "react-native";
+import { firebase } from "../config/Firebase";
 
 export default class Signup extends Component {
   constructor() {
     super();
     this.state = {
-      displayName: '',
-      email: '',
-      password: '',
+      displayName: "",
+      email: "",
+      password: "",
       isLoading: false,
     };
   }
@@ -28,8 +28,8 @@ export default class Signup extends Component {
   };
 
   registerUser = () => {
-    if (this.state.email === '' && this.state.password === '') {
-      Alert.alert('Enter details to signup!');
+    if (this.state.email === "" && this.state.password === "") {
+      Alert.alert("Enter details to signup!");
     } else {
       this.setState({
         isLoading: true,
@@ -41,14 +41,14 @@ export default class Signup extends Component {
           res.user.updateProfile({
             displayName: this.state.displayName,
           });
-          console.log('User registered successfully!');
+          console.log("User registered successfully!");
           this.setState({
             isLoading: false,
-            displayName: '',
-            email: '',
-            password: '',
+            displayName: "",
+            email: "",
+            password: "",
           });
-          this.props.navigation.navigate('Login');
+          this.props.navigation.navigate("Login");
         })
         .catch((error) => this.setState({ errorMessage: error.message }));
     }
@@ -68,19 +68,19 @@ export default class Signup extends Component {
           style={styles.inputStyle}
           placeholder="Name"
           value={this.state.displayName}
-          onChangeText={(val) => this.updateInputVal(val, 'displayName')}
+          onChangeText={(val) => this.updateInputVal(val, "displayName")}
         />
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"
           value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
+          onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
           style={styles.inputStyle}
           placeholder="Password"
           value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
+          onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
         />
@@ -92,7 +92,8 @@ export default class Signup extends Component {
 
         <Text
           style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('Login')}>
+          onPress={() => this.props.navigation.navigate("Login")}
+        >
           Already Registered? Click here to login
         </Text>
       </View>
@@ -103,33 +104,33 @@ export default class Signup extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     padding: 35,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   inputStyle: {
-    width: '100%',
+    width: "100%",
     marginBottom: 15,
     paddingBottom: 15,
-    alignSelf: 'center',
-    borderColor: '#ccc',
+    alignSelf: "center",
+    borderColor: "#ccc",
     borderBottomWidth: 1,
   },
   loginText: {
-    color: '#3740FE',
+    color: "#3740FE",
     marginTop: 25,
-    textAlign: 'center',
+    textAlign: "center",
   },
   preloader: {
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
 });

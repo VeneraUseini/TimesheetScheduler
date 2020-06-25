@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,15 +7,15 @@ import {
   Button,
   Alert,
   ActivityIndicator,
-} from 'react-native';
-import firebase from '../config/Firebase';
+} from "react-native";
+import { firebase } from "../config/Firebase";
 
 export default class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       isLoading: false,
     };
   }
@@ -27,8 +27,8 @@ export default class Login extends Component {
   };
 
   userLogin = () => {
-    if (this.state.email === '' && this.state.password === '') {
-      Alert.alert('Enter details to signin!');
+    if (this.state.email === "" && this.state.password === "") {
+      Alert.alert("Enter details to signin!");
     } else {
       this.setState({
         isLoading: true,
@@ -38,13 +38,13 @@ export default class Login extends Component {
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((res) => {
           console.log(res);
-          console.log('User logged-in successfully!');
+          console.log("User logged-in successfully!");
           this.setState({
             isLoading: false,
-            email: '',
-            password: '',
+            email: "",
+            password: "",
           });
-          this.props.navigation.navigate('Main');
+          this.props.navigation.navigate("Main");
         })
         .catch((error) => this.setState({ errorMessage: error.message }));
     }
@@ -64,13 +64,13 @@ export default class Login extends Component {
           style={styles.inputStyle}
           placeholder="Email"
           value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
+          onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
           style={styles.inputStyle}
           placeholder="Password"
           value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
+          onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
         />
@@ -82,7 +82,8 @@ export default class Login extends Component {
 
         <Text
           style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('Signup')}>
+          onPress={() => this.props.navigation.navigate("Signup")}
+        >
           Don't have account? Click here to signup
         </Text>
       </View>
@@ -93,33 +94,33 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     padding: 35,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   inputStyle: {
-    width: '100%',
+    width: "100%",
     marginBottom: 15,
     paddingBottom: 15,
-    alignSelf: 'center',
-    borderColor: '#ccc',
+    alignSelf: "center",
+    borderColor: "#ccc",
     borderBottomWidth: 1,
   },
   loginText: {
-    color: '#3740FE',
+    color: "#3740FE",
     marginTop: 25,
-    textAlign: 'center',
+    textAlign: "center",
   },
   preloader: {
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
 });

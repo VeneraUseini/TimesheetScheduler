@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import firebase from '../config/Firebase';
+import React, { Component } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
+import { firebase } from "../config/Firebase";
 
 export default class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      uid: '',
+      uid: "",
     };
   }
 
@@ -15,7 +15,7 @@ export default class Dashboard extends Component {
       .auth()
       .signOut()
       .then(() => {
-        this.props.navigation.navigate('Login');
+        this.props.navigation.navigate("Login");
       })
       .catch((error) => this.setState({ errorMessage: error.message }));
   };
@@ -28,7 +28,18 @@ export default class Dashboard extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.textStyle}>Hello, {this.state.displayName}</Text>
-
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate("ScheduleDetail")}
+        />
+        <Button
+          title="Go to Add Board"
+          onPress={() => this.props.navigation.navigate("AddSchedule")}
+        />
+        <Button
+          title="Go to Edit Board"
+          onPress={() => this.props.navigation.navigate("Schedule")}
+        />
         <Button color="#3740FE" title="Logout" onPress={() => this.signOut()} />
       </View>
     );
@@ -38,11 +49,11 @@ export default class Dashboard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 35,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   textStyle: {
     fontSize: 15,
